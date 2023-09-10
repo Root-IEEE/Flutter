@@ -1,24 +1,32 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferencesHelper {
-  final String _kCountryCodePrefs = "countryCode";
-  final String _kCountryNamePrefs = "countryName";
-  final String _userType = 'userType';
-  final String _loggedInUserId = '_loggedInUserId';
-  final String _schoolCode = 'schoolCode';
-  final String _photoUrl = 'photoUrl';
-  final String _childIds = 'childIds';
-  final String _parentsIds = 'parentsIds';
-  final String _userModel = 'userJsonModel';
+class CacheHelper {
+  static SharedPreferences? sharedPreferences;
 
-  //Method to save User model in json format
-  Future<bool> setUserDataModel(String jsonModel) async {
-    return true;
+  static init() async {
+    sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  //Method to retrive User model in json format
-  Future<String> getUserDataModel() async {
-    return '';
+  static dynamic getData({
+    required String key,
+  }) {
+    return sharedPreferences!.get(key);
   }
 
+  static Future<bool> saveData({
+    required String key,
+    required dynamic value,
+  }) async {
+    if (value is String) return await sharedPreferences!.setString(key, value);
+
+    if (value is double) return await sharedPreferences!.setDouble(key, value);
+
+    if (value is bool) return await sharedPreferences!.setBool(key, value);
+
+    return await sharedPreferences!.setInt(key, value);
+  }
+
+  static Future<bool>? removeData({required String key}) async {
+    return await sharedPreferences!.remove(key);
+  }
 }
