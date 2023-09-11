@@ -1,12 +1,14 @@
 import 'package:dio/dio.dart';
 
+import '../end_points.dart';
+
 class DioHelper {
   static Dio? dio;
 
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'AppEndPoints.baseURL',
+        baseUrl: AppEndPoints.BASEURL,
         receiveDataWhenStatusError: true,
       ),
     );
