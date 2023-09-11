@@ -1,27 +1,20 @@
-import 'package:e_learining/modules/auth/register/register_cubit/cubit.dart';
-import 'package:e_learining/modules/auth/register/register_cubit/states.dart';
+import 'package:e_learining/modules/auth/login/login_cubit/cubit.dart';
+import 'package:e_learining/modules/auth/login/login_cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../shared/components/constants/constants.dart';
+
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
 import '../../../shared/components/custom_widgets/main_button.dart';
 import '../../../shared/network/local/shared_preferences_helper.dart';
 
-class RegisterScreen extends StatefulWidget {
-  @override
-  _RegisterScreenState createState() => _RegisterScreenState();
-}
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
-class _RegisterScreenState extends State<RegisterScreen> {
   var formKey = GlobalKey<FormState>();
-  var nameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-  var phoneController = TextEditingController();
-  String? selectedGender;
-  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,25 +22,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
       create: (BuildContext context) => AppLoginCubit(),
       child: BlocConsumer<AppLoginCubit, AppLoginStates>(
         listener: (context, state) {
-          if (state is AppRegisterSuccessState) {
-            if (state.registerModel.status!) {
-              print(state.registerModel.message);
-              print(state.registerModel.data!.token);
+          try {
+            if (state is AppLoginSuccessState) {
+              if (state.loginModel.status!) {
+                CacheHelper.saveData(
+                  key: 'token',
+                  value: state.loginModel.data!.token,
+                ).then((value) {
+                  debugPrint('Login token saved');
+                });
+              } else {
+                debugPrint(state.loginModel.message);
 
-              CacheHelper.saveData(
-                key: 'token',
-                value: state.registerModel.data!.token,
-              ).then((value) {
-                token = state.registerModel.data!.token!;
-              });
-            } else {
-              print(state.registerModel.message);
-
-              showToast(
-                message: state.registerModel.message!,
-                state: ToastStates.error,
-              );
+                showToast(
+                    message: '${state.loginModel.message}',
+                    state: ToastStates.error);
+              }
             }
+          } catch (error) {
+            debugPrint(error.toString());
           }
         },
         builder: (context, state) {
@@ -67,7 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Align(
                               alignment: Alignment.topCenter,
                               child: Text(
-                                'Welcome!',
+                                'Welcome Back!',
                                 style: GoogleFonts.poppins().copyWith(
                                   color: Colors.black,
                                   fontSize: 20.0,
@@ -76,31 +69,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                             ),
                             const SizedBox(
+                              height: 10.0,
+                            ),
+                            Align(
+                                alignment: Alignment.topCenter,
+                                child: RichText(
+                                  text: TextSpan(
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(fontSize: 15),
+                                      children: [
+                                        const TextSpan(
+                                            text: 'Sign in now to join '),
+                                        TextSpan(
+                                          text: 'UR PROF.',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .copyWith(
+                                                fontSize: 15,
+                                              ),
+                                        ),
+                                      ]),
+                                )),
+                            const SizedBox(
                               height: 30.0,
-                            ),
-                            Text(
-                              'Name',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
-                            ),
-                            const SizedBox(
-                              height: 5.0,
-                            ),
-                            DefaultTextField(
-                              controller: nameController,
-                              keyboardType: TextInputType.name,
-                              validator: (String? value) {
-                                if (value!.isEmpty) {
-                                  return 'Please enter your name';
-                                }
-                              },
-                              labelText: 'Enter your name',
-                              prefixIcon: Icons.person_outline,
-                            ),
-                            const SizedBox(
-                              height: 15.0,
                             ),
                             Text(
                               'Email',
@@ -153,82 +147,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               labelText: 'Password',
                               prefixIcon: Icons.lock_outline,
                             ),
-                            const SizedBox(
-                              height: 15.0,
-                            ),
-                            Text(
-                              'Phone',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
-                            ),
-                            const SizedBox(
-                              height: 5.0,
-                            ),
-                            DefaultTextField(
-                              controller: phoneController,
-                              keyboardType: TextInputType.phone,
-                              validator: (String? value) {
-                                if (value!.isEmpty) {
-                                  return 'Please enter your phone number';
-                                }
-                              },
-                              labelText: 'Phone',
-                              prefixIcon: Icons.phone,
-                            ),
-                            const SizedBox(
-                              height: 15.0,
-                            ),
-                            Text(
-                              'Gender',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
-                            ),
-                            const SizedBox(
-                              height: 5.0,
-                            ),
-                            Row(
-                              children: [
-                                Radio<String>(
-                                  value: 'Male',
-                                  groupValue: cubit.gender,
-                                  onChanged: (value) {
-                                    cubit.selectGender(value!);
-                                  },
-                                ),
-                                const Text('Male'),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Radio<String>(
-                                  value: 'Female',
-                                  groupValue: cubit.gender,
-                                  onChanged: (value) {
-                                    cubit.selectGender(value!);
-                                  },
-                                ),
-                                const Text('Female'),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15.0,
-                            ),
+                            Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton(
+                                    onPressed: () {},
+                                    child: const Text('Forget password?'))),
                             MainButton(
                               width: double.infinity,
                               radius: 32.0,
                               onTap: () {
-                                if (formKey.currentState!.validate() &&
-                                    selectedGender != null &&
-                                    isSelected) {
-                                  cubit.userRegister(
+                                if (formKey.currentState!.validate()) {
+                                  cubit.userLogin(
                                     email: emailController.text,
                                     password: passwordController.text,
-                                    name: nameController.text,
-                                    phone: phoneController.text,
-                                    // gender: selectedGender!,
                                   );
                                 } else {
                                   showToast(
@@ -244,7 +175,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Already have an account?',
+                                  'Don\'t have an account?',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodySmall!
@@ -252,7 +183,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                                 TextButton(
                                     onPressed: () {},
-                                    child: const Text('Sign in'))
+                                    child: const Text('Sign Up'))
                               ],
                             ),
                           ],
