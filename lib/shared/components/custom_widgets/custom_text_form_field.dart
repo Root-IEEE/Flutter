@@ -44,7 +44,6 @@ class DefaultTextField extends StatelessWidget {
             borderSide: BorderSide.none,
         ),
         filled: true,
-        // Set to true for grey background
         fillColor: Colors.grey[120],
         // Background color
         prefixIcon: Icon(prefixIcon),

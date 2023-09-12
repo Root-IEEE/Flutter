@@ -6,11 +6,11 @@ import '../../../../shared/network/end_points.dart';
 import '../../../../shared/network/remote/dio_helper.dart';
 
 
-class AppRegisterCubit extends Cubit<AppRegisterStates> {
-  AppRegisterCubit() : super(AppRegisterInitialState());
+class AppLoginCubit extends Cubit<AppLoginStates> {
+  AppLoginCubit() : super(AppRegisterInitialState());
   AppRegisterModel? registerModel;
 
-  static AppRegisterCubit get(context) => BlocProvider.of(context);
+  static AppLoginCubit get(context) => BlocProvider.of(context);
 
   void userRegister({
     required String name,

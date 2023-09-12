@@ -1,23 +1,23 @@
 import '../../../../models/register_model.dart';
 
-abstract class AppRegisterStates {}
+abstract class AppLoginStates {}
 
-class AppRegisterInitialState extends AppRegisterStates {}
+class AppRegisterInitialState extends AppLoginStates {}
 
-class AppRegisterLoadingState extends AppRegisterStates {}
+class AppRegisterLoadingState extends AppLoginStates {}
 
-class AppRegisterSuccessState extends AppRegisterStates {
+class AppRegisterSuccessState extends AppLoginStates {
   final AppRegisterModel registerModel;
 
   AppRegisterSuccessState(this.registerModel);
 }
 
-class AppRegisterErrorState extends AppRegisterStates {
+class AppRegisterErrorState extends AppLoginStates {
   final String error;
 
   AppRegisterErrorState(this.error);
 }
 
-class AppRegisterChangePasswordVisibilityState extends AppRegisterStates {}
-class AppRegisterChangeGenderState extends AppRegisterStates {
+class AppRegisterChangePasswordVisibilityState extends AppLoginStates {}
+class AppRegisterChangeGenderState extends AppLoginStates {
 }

@@ -13,5 +13,6 @@ class AppColors {
     800: Color(0xFF392A8A),
     900: Color(0xFF2C1F6A),
   });
+  static Color? grey = Colors.grey[120];
 
 }
