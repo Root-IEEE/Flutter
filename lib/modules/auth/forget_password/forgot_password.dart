@@ -1,5 +1,7 @@
+import 'package:e_learining/modules/auth/forget_password/verify_code_screen.dart';
 import 'package:e_learining/modules/auth/login/login_cubit/cubit.dart';
 import 'package:e_learining/modules/auth/login/login_cubit/states.dart';
+import 'package:e_learining/shared/components/constants/navigation_helper.dart';
 import 'package:e_learining/shared/styles/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +92,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                         radius: 32.0,
                         onTap: () {
                           if (formKey.currentState!.validate()) {
+                            navigateTo(context, VerifyCodeScreen());
                           } else {
                             showToast(
                               message: 'Please Enter Your Email',

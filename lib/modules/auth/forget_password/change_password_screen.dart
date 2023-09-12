@@ -1,3 +1,5 @@
+import 'package:e_learining/modules/auth/login/login_screen.dart';
+import 'package:e_learining/shared/components/constants/navigation_helper.dart';
 import 'package:e_learining/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -138,6 +140,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         radius: 32.0,
                         onTap: () {
                           if (formKey.currentState!.validate()) {
+                            navigateTo(context, LoginScreen());
                           } else {
                             showToast(
                               message: 'Please Enter Your Email',

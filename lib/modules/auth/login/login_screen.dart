@@ -1,5 +1,8 @@
+import 'package:e_learining/modules/auth/forget_password/forgot_password.dart';
 import 'package:e_learining/modules/auth/login/login_cubit/cubit.dart';
 import 'package:e_learining/modules/auth/login/login_cubit/states.dart';
+import 'package:e_learining/modules/auth/register/register_screen.dart';
+import 'package:e_learining/shared/components/constants/navigation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -150,7 +153,9 @@ class LoginScreen extends StatelessWidget {
                             Align(
                                 alignment: Alignment.centerRight,
                                 child: TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      navigateTo(context, ForgetPasswordScreen());
+                                    },
                                     child: const Text('Forget password?'))),
                             MainButton(
                               width: double.infinity,
@@ -168,7 +173,7 @@ class LoginScreen extends StatelessWidget {
                                   );
                                 }
                               },
-                              text: 'Sign Up',
+                              text: 'Sign In',
                             ),
                             const SizedBox(height: 20),
                             Row(
@@ -182,7 +187,9 @@ class LoginScreen extends StatelessWidget {
                                       .copyWith(fontSize: 15),
                                 ),
                                 TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      navigateTo(context, RegisterScreen());
+                                    },
                                     child: const Text('Sign Up'))
                               ],
                             ),
