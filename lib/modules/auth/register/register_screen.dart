@@ -3,7 +3,8 @@ import 'package:e_learining/modules/auth/register/register_cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../shared/components/constants/constants.dart';
+import '../../../layout/home.dart';
+import '../../../shared/components/constants/navigation_helper.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
 import '../../../shared/components/custom_widgets/main_button.dart';
@@ -19,39 +20,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-  var phoneController = TextEditingController();
+  var passwordConfirmationController = TextEditingController();
   String? selectedGender;
   bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => AppLoginCubit(),
-      child: BlocConsumer<AppLoginCubit, AppLoginStates>(
+      create: (BuildContext context) => AppRegisterCubit(),
+      child: BlocConsumer<AppRegisterCubit, AppRegisterStates>(
         listener: (context, state) {
-          if (state is AppRegisterSuccessState) {
-            if (state.registerModel.status!) {
-              print(state.registerModel.message);
-              print(state.registerModel.data!.token);
-
+          try {
+            if (state is AppRegisterSuccessState) {
+              print(state.registerModel.token);
+              final token = state.registerModel.token;
               CacheHelper.saveData(
                 key: 'token',
-                value: state.registerModel.data!.token,
+                value: token,
               ).then((value) {
-                token = state.registerModel.data!.token!;
+                navigateToAndKill(context, const AppLayout());
+                print(CacheHelper.getData(key: 'token'));
               });
-            } else {
-              print(state.registerModel.message);
-
+            } else if (state is AppRegisterErrorState) {
               showToast(
-                message: state.registerModel.message!,
+                message: 'Incorrect Password',
                 state: ToastStates.error,
               );
             }
+          } catch (error) {
+            debugPrint(error.toString());
           }
         },
         builder: (context, state) {
-          var cubit = AppLoginCubit.get(context);
+          var cubit = AppRegisterCubit.get(context);
           return Scaffold(
             body: SafeArea(
               child: Center(
@@ -157,7 +158,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               height: 15.0,
                             ),
                             Text(
-                              'Phone',
+                              'Confirm Password',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall!
@@ -167,15 +168,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               height: 5.0,
                             ),
                             DefaultTextField(
-                              controller: phoneController,
-                              keyboardType: TextInputType.phone,
+                              controller: passwordConfirmationController,
+                              keyboardType: TextInputType.visiblePassword,
+                              suffixIcon: cubit.suffix,
+                              onFieldSubmitted: (value) {},
+                              isPassword: cubit.isPassword,
+                              suffixPressed: () {
+                                cubit.changePasswordVisibility();
+                              },
                               validator: (String? value) {
                                 if (value!.isEmpty) {
-                                  return 'Please enter your phone number';
+                                  return 'password is too short';
                                 }
                               },
-                              labelText: 'Phone',
-                              prefixIcon: Icons.phone,
+                              labelText: 'Confirm Password',
+                              prefixIcon: Icons.lock_outline,
                             ),
                             const SizedBox(
                               height: 15.0,
@@ -220,15 +227,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               width: double.infinity,
                               radius: 32.0,
                               onTap: () {
-                                if (formKey.currentState!.validate() &&
-                                    selectedGender != null &&
-                                    isSelected) {
+                                if (formKey.currentState!.validate()) {
                                   cubit.userRegister(
                                     email: emailController.text,
                                     password: passwordController.text,
                                     name: nameController.text,
-                                    phone: phoneController.text,
-                                    // gender: selectedGender!,
+                                    passwordConfirmation:
+                                        passwordConfirmationController.text,
                                   );
                                 } else {
                                   showToast(

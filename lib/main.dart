@@ -1,3 +1,4 @@
+import 'package:e_learining/modules/auth/login/login_screen.dart';
 import 'package:e_learining/shared/components/constants/bloc_observer.dart';
 import 'package:e_learining/shared/network/local/shared_preferences_helper.dart';
 import 'package:e_learining/shared/network/remote/dio_helper.dart';
@@ -7,18 +8,43 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'layout/app_cubit/app_cubit.dart';
 import 'layout/home.dart';
+import 'modules/onboarding/onboarding_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  DioHelper.init();
+  await DioHelper.init();
   await CacheHelper.init();
+  Widget? widget;
+  bool? isBoarding = CacheHelper.getData(key: 'onBoarding');
+  String? token = CacheHelper.getData(key: 'token');
 
-  runApp(const MyApp());
+  if (isBoarding != null) {
+    if (token != null) {
+      widget = const AppLayout();
+    } else {
+      widget = LoginScreen();
+    }
+  } else {
+    widget = OnBoardingScreen();
+  }
+
+  runApp(
+    MyApp(
+      startWidget: widget,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // final bool isDark;
+  final Widget? startWidget;
+
+  const MyApp(
+      {Key? key,
+      // required this.isDark,
+      required this.startWidget})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +66,7 @@ class MyApp extends StatelessWidget {
               indicatorSize: TabBarIndicatorSize.label,
             ),
           ),
-          home: const AppLayout(),
+          home: startWidget,
         ));
   }
 }

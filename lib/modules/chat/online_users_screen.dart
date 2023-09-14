@@ -11,15 +11,12 @@ class ChatScreen extends StatelessWidget {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-              child:   Text(
-                'Messages',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(fontSize: 24,fontWeight: FontWeight.bold),
-              ),
+            Text(
+              'Messages',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(fontSize: 24,fontWeight: FontWeight.bold),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
