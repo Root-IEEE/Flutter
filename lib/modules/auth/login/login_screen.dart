@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../layout/home.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
 import '../../../shared/components/custom_widgets/main_button.dart';
@@ -27,20 +28,24 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           try {
             if (state is AppLoginSuccessState) {
-              if (state.loginModel.status!) {
-                CacheHelper.saveData(
-                  key: 'token',
-                  value: state.loginModel.data!.token,
-                ).then((value) {
-                  debugPrint('Login token saved');
-                });
-              } else {
-                debugPrint(state.loginModel.message);
+              showToast(
+                message: 'Login Successfully',
+                state: ToastStates.success,
+              );
 
-                showToast(
-                    message: '${state.loginModel.message}',
-                    state: ToastStates.error);
-              }
+              final token = state.loginModel.token;
+              CacheHelper.saveData(
+                key: 'token',
+                value: token,
+              ).then((value) {
+                navigateToAndKill(context, const AppLayout());
+                print(CacheHelper.getData(key: 'token'));
+              });
+            } else if (state is AppLoginErrorState) {
+              showToast(
+                message: 'Wrong Password!',
+                state: ToastStates.error,
+              );
             }
           } catch (error) {
             debugPrint(error.toString());
@@ -154,7 +159,8 @@ class LoginScreen extends StatelessWidget {
                                 alignment: Alignment.centerRight,
                                 child: TextButton(
                                     onPressed: () {
-                                      navigateTo(context, ForgetPasswordScreen());
+                                      navigateTo(
+                                          context, ForgetPasswordScreen());
                                     },
                                     child: const Text('Forget password?'))),
                             MainButton(
