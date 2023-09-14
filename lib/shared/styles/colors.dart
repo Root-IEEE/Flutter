@@ -14,5 +14,6 @@ class AppColors {
     900: Color(0xFF2C1F6A),
   });
   static Color? grey = Colors.grey[120];
+  static Color backgroundColor = const Color(0xFFF8F8F8);
 
 }

@@ -1,6 +1,7 @@
+import 'package:e_learining/shared/components/custom_widgets/chat_component.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-
+import '../../models/comment_model.dart';
 import '../../shared/components/custom_widgets/video_player.dart';
 
 class VideoPlayersScreen extends StatelessWidget {
@@ -73,9 +74,9 @@ class VideoPlayersScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.5,
-                child: const TabBarView(
+                child: TabBarView(
                   children: [
-                    Align(
+                    const Align(
                       alignment: Alignment.center,
                       child: Padding(
                         padding: EdgeInsets.all(16.0),
@@ -86,7 +87,7 @@ class VideoPlayersScreen extends StatelessWidget {
                       ),
                     ),
 
-                    Align(
+                    const Align(
                       alignment: Alignment.center,
                       child: Padding(
                         padding: EdgeInsets.all(16.0),
@@ -98,16 +99,17 @@ class VideoPlayersScreen extends StatelessWidget {
                     ),
 
                     // third tab bar view widget (Comments)
-                    Align(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          'Comments',
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ),
+                    ListView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        children: dummyComments
+                            .map((e) => ChatComponent(
+                                  title: e.title,
+                                  subTitle: e.subTitle,
+                                  image: e.image,
+                                  date: e.date,
+                                ))
+                            .toList()),
                   ],
                 ),
               ),
