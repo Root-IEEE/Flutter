@@ -5,6 +5,7 @@ class AppEndPoints{
   static const REGISTER = 'register';
   static const LOGOUT = 'logout';
   static const FORGETPASSWORD = 'forgetpassword';
+  static const videos = 'videos';
 
 }
 

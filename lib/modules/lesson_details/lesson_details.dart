@@ -1,11 +1,33 @@
 import 'package:e_learining/shared/components/custom_widgets/chat_component.dart';
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+import 'package:pod_player/pod_player.dart';
 import '../../models/comment_model.dart';
-import '../../shared/components/custom_widgets/video_player.dart';
 
-class VideoPlayersScreen extends StatelessWidget {
+class VideoPlayersScreen extends StatefulWidget {
   const VideoPlayersScreen({Key? key}) : super(key: key);
+
+  @override
+  State<VideoPlayersScreen> createState() => _VideoPlayersScreenState();
+}
+
+class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
+  late final PodPlayerController controller;
+
+  @override
+  void initState() {
+    controller = PodPlayerController(
+      playVideoFrom: PlayVideoFrom.vimeo(
+        '518190130',
+      ),
+    )..initialise();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +39,9 @@ class VideoPlayersScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const VideoPlayerView(
-                url:
-                    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
-                dataSourceType: DataSourceType.network,
+              PodVideoPlayer(
+                controller: controller,
+                videoAspectRatio: 16 / 9,
               ),
               Padding(
                 padding:

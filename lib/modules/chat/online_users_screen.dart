@@ -10,28 +10,29 @@ class ChatScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              'Messages',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyLarge!
-                  .copyWith(fontSize: 24,fontWeight: FontWeight.bold),
-            ),
+          child:
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: dummyOnlineUsers
-                      .map((e) => ChatComponent(
-                            title: e.title,
-                            subTitle: e.subTitle,
-                            image: e.image,
-                            date: e.date,
-                          ))
-                      .toList()),
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                'Messages',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(fontSize: 24,fontWeight: FontWeight.bold),
+              ),
             ),
+            ListView(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                children: dummyOnlineUsers
+                    .map((e) => ChatComponent(
+                          title: e.title,
+                          subTitle: e.subTitle,
+                          image: e.image,
+                          date: e.date,
+                        ))
+                    .toList()),
           ]),
         ),
       ),
