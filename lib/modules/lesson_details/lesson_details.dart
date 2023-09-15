@@ -2,9 +2,12 @@ import 'package:e_learining/shared/components/custom_widgets/chat_component.dart
 import 'package:flutter/material.dart';
 import 'package:pod_player/pod_player.dart';
 import '../../models/comment_model.dart';
+import '../../models/list_of_videos_model.dart';
 
 class VideoPlayersScreen extends StatefulWidget {
-  const VideoPlayersScreen({Key? key}) : super(key: key);
+  final Data videoData;
+
+  const VideoPlayersScreen({super.key, required this.videoData});
 
   @override
   State<VideoPlayersScreen> createState() => _VideoPlayersScreenState();
@@ -15,9 +18,11 @@ class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
 
   @override
   void initState() {
+    Uri uri = Uri.parse(widget.videoData.video.toString());
+    String lastSegment = uri.pathSegments.last;
     controller = PodPlayerController(
       playVideoFrom: PlayVideoFrom.vimeo(
-        '518190130',
+        lastSegment,
       ),
     )..initialise();
     super.initState();
@@ -47,7 +52,7 @@ class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
                 padding:
                     const EdgeInsets.only(top: 18.0, left: 24, bottom: 18.0),
                 child: Text(
-                  'First Unit Second lesson',
+                  widget.videoData.title!,
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
@@ -97,12 +102,12 @@ class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
                 height: MediaQuery.of(context).size.height * 0.5,
                 child: TabBarView(
                   children: [
-                    const Align(
+                    Align(
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Text(
-                          'Description',
+                          widget.videoData.description!,
                           textAlign: TextAlign.left,
                         ),
                       ),

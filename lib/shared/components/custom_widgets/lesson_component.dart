@@ -1,3 +1,4 @@
+import 'package:e_learining/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -17,9 +18,9 @@ class VideComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-      child: InkWell(
+    return GestureDetector(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -74,16 +75,37 @@ class VideComponent extends StatelessWidget {
                           .bodySmall!
                           .copyWith(fontSize: 15),
                     ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Row(children: [
+                        SvgPicture.asset(
+                          'assets/icons/clipboard-textIcons.svg',
+                          color: AppColors.mainColor,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          '1 Quiz',
+                          softWrap: true,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(fontSize: 15),
+                        ),
+                      ]),
+                    ),
                   ],
                 ),
               )
             ],
           ),
         ),
-        onTap: () {
-          function;
-        },
       ),
+      onTap: () {
+        function!();
+      },
     );
   }
 }

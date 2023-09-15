@@ -3,7 +3,7 @@ import 'package:e_learining/modules/auth/register/register_cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../layout/home.dart';
+import '../../../layout/layout.dart';
 import '../../../shared/components/constants/navigation_helper.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';

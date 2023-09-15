@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_learining/models/list_of_videos_model.dart';
 import 'package:e_learining/modules/chat/online_users_screen.dart';
+import 'package:e_learining/modules/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +16,7 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
   List<Widget> bottomScreens = [
-    const Center(child: Text('Home')),
+    const HomeScreen(),
     const VideoListScreen(),
     const Center(child: Text('Quiz')),
     const ChatScreen(),
