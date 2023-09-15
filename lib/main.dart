@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'layout/app_cubit/app_cubit.dart';
-import 'layout/home.dart';
+import 'layout/layout.dart';
 import 'modules/onboarding/onboarding_screen.dart';
 
 Future<void> main() async {
