@@ -39,4 +39,28 @@ List<OnlineUserModel> dummyOnlineUsers = [
     subTitle: 'How can I help you',
     image: 'assets/images/Ahmed.jpg',
   ),
+  OnlineUserModel(
+    date: DateFormat('hh:mm a').format(DateTime.now().add(const Duration(hours: 1))),
+    title: 'Ahmed Mahmoud',
+    subTitle: 'How can I help you',
+    image: 'assets/images/Ahmed.jpg',
+  ),
+  OnlineUserModel(
+    date: DateFormat('hh:mm a').format(DateTime.now().add(const Duration(hours: 1))),
+    title: 'Ahmed Mahmoud',
+    subTitle: 'How can I help you',
+    image: 'assets/images/Ahmed.jpg',
+  ),
+  OnlineUserModel(
+    date: DateFormat('hh:mm a').format(DateTime.now().add(const Duration(hours: 1))),
+    title: 'Ahmed Mahmoud',
+    subTitle: 'How can I help you',
+    image: 'assets/images/Ahmed.jpg',
+  ),
+  OnlineUserModel(
+    date: DateFormat('hh:mm a').format(DateTime.now().add(const Duration(hours: 1))),
+    title: 'Ahmed Mahmoud',
+    subTitle: 'How can I help you',
+    image: 'assets/images/Ahmed.jpg',
+  ),
 ];
