@@ -41,7 +41,7 @@ dependencies:
   intl: ^0.18.1
   dio: ^5.1.2
   conditional_builder_null_safety: ^0.0.6
-  video_player:
+  video_player: ^2.7.1
   fluttertoast: ^8.2.2
   vimeo_video_player_custom: ^0.0.1
   get: ^4.6.6
