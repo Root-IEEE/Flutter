@@ -1,13 +1,15 @@
-import 'package:e_learining/modules/auth/login/login_screen.dart';
-import 'package:e_learining/shared/components/constants/bloc_observer.dart';
-import 'package:e_learining/shared/network/local/shared_preferences_helper.dart';
-import 'package:e_learining/shared/network/remote/dio_helper.dart';
-import 'package:e_learining/shared/styles/colors.dart';
+import 'package:e_learning/modules/home/home_screen.dart';
+import 'package:e_learning/shared/components/constants/bloc_observer.dart';
+import 'package:e_learning/shared/network/local/shared_preferences_helper.dart';
+import 'package:e_learning/shared/network/remote/dio_helper.dart';
+import 'package:e_learning/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'layout/app_cubit/app_cubit.dart';
 import 'layout/layout.dart';
+import 'modules/auth/login/login_screen.dart';
 import 'modules/onboarding/onboarding_screen.dart';
 
 Future<void> main() async {
@@ -50,23 +52,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => AppCubit()..getListOfAllVideos(),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            scaffoldBackgroundColor: Colors.grey.shade200,
-            brightness: Brightness.light,
-            primarySwatch: AppColors.mainColor,
-            textTheme: GoogleFonts.poppinsTextTheme(
-              Theme.of(context).textTheme,
+        child: GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              scaffoldBackgroundColor: Colors.grey.shade200,
+              brightness: Brightness.light,
+              primarySwatch: AppColors.mainColor,
+              textTheme: GoogleFonts.poppinsTextTheme(
+                Theme.of(context).textTheme,
+              ),
+              appBarTheme: AppBarTheme(
+                  backgroundColor: Colors.grey.shade200,
+                  iconTheme: const IconThemeData(color: Colors.black)),
+              tabBarTheme: TabBarTheme(
+                unselectedLabelStyle: const TextStyle(color: Colors.grey),
+                unselectedLabelColor: Colors.grey,
+                labelColor: AppColors.mainColor,
+                indicatorSize: TabBarIndicatorSize.label,
+              ),
             ),
-            tabBarTheme: TabBarTheme(
-              unselectedLabelStyle: const TextStyle(color: Colors.grey),
-              unselectedLabelColor: Colors.grey,
-              labelColor: AppColors.mainColor,
-              indicatorSize: TabBarIndicatorSize.label,
-            ),
-          ),
-          home: startWidget,
-        ));
+            home: startWidget));
   }
 }

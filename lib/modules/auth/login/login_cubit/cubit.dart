@@ -1,9 +1,9 @@
-import 'package:e_learining/modules/auth/login/login_cubit/states.dart';
-import 'package:e_learining/shared/network/end_points.dart';
+import 'package:e_learning/modules/auth/login/login_cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../models/login_model.dart';
+import '../../../../shared/network/end_points.dart';
 import '../../../../shared/network/remote/dio_helper.dart';
 
 class AppLoginCubit extends Cubit<AppLoginStates> {

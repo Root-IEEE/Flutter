@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:e_learining/shared/network/end_points.dart';
+import '../end_points.dart';
 
 class DioHelper {
   static Dio? dio;

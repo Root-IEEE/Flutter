@@ -1,18 +1,12 @@
-import 'package:e_learining/modules/auth/forget_password/verify_code_screen.dart';
-import 'package:e_learining/modules/auth/login/login_cubit/cubit.dart';
-import 'package:e_learining/modules/auth/login/login_cubit/states.dart';
-import 'package:e_learining/shared/components/constants/navigation_helper.dart';
-import 'package:e_learining/shared/styles/colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_learning/modules/auth/forget_password/verify_code_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../../../shared/components/constants/navigation_helper.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
 import '../../../shared/components/custom_widgets/main_button.dart';
-import '../../../shared/network/local/shared_preferences_helper.dart';
+import '../../../shared/styles/colors.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   ForgetPasswordScreen({super.key});

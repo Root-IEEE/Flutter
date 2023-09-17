@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:e_learining/modules/auth/register/register_cubit/states.dart';
-import 'package:e_learining/shared/network/end_points.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_learning/modules/auth/register/register_cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../models/register_model.dart';
+import '../../../../shared/network/end_points.dart';
 import '../../../../shared/network/remote/dio_helper.dart';
 
 class AppRegisterCubit extends Cubit<AppRegisterStates> {

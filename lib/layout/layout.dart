@@ -1,10 +1,10 @@
-import 'package:e_learining/layout/app_cubit/app_cubit.dart';
-import 'package:e_learining/layout/app_cubit/app_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../shared/styles/colors.dart';
+import 'app_cubit/app_cubit.dart';
+import 'app_cubit/app_states.dart';
 
 class AppLayout extends StatefulWidget {
   const AppLayout({Key? key}) : super(key: key);

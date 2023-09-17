@@ -6,6 +6,7 @@ class AppEndPoints{
   static const LOGOUT = 'logout';
   static const FORGETPASSWORD = 'forgetpassword';
   static const videos = 'videos';
+  static const quizzes = 'exams';
 
 }
 
