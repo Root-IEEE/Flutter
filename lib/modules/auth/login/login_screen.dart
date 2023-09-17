@@ -1,17 +1,17 @@
-import 'package:e_learining/modules/auth/forget_password/forgot_password.dart';
-import 'package:e_learining/modules/auth/login/login_cubit/cubit.dart';
-import 'package:e_learining/modules/auth/login/login_cubit/states.dart';
-import 'package:e_learining/modules/auth/register/register_screen.dart';
-import 'package:e_learining/shared/components/constants/navigation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../layout/layout.dart';
+import '../../../shared/components/constants/navigation_helper.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
 import '../../../shared/components/custom_widgets/main_button.dart';
 import '../../../shared/network/local/shared_preferences_helper.dart';
+import '../forget_password/forgot_password.dart';
+import '../register/register_screen.dart';
+import 'login_cubit/cubit.dart';
+import 'login_cubit/states.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
               });
             } else if (state is AppLoginErrorState) {
               showToast(
-                message: 'Wrong Password!',
+                message: 'Wrong Email or Password!',
                 state: ToastStates.error,
               );
             }

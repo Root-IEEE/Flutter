@@ -1,5 +1,5 @@
-import 'package:e_learining/models/online_user_model.dart';
 import 'package:flutter/material.dart';
+import '../../models/online_user_model.dart';
 import '../../shared/components/custom_widgets/chat_component.dart';
 
 class ChatScreen extends StatelessWidget {

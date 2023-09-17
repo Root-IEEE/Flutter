@@ -1,11 +1,10 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:e_learining/layout/app_cubit/app_cubit.dart';
-import 'package:e_learining/layout/app_cubit/app_states.dart';
-import 'package:e_learining/models/list_of_videos_model.dart';
-import 'package:e_learining/shared/components/custom_widgets/lesson_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../layout/app_cubit/app_cubit.dart';
+import '../../layout/app_cubit/app_states.dart';
+import '../../models/list_of_videos_model.dart';
+import '../../shared/components/custom_widgets/lesson_component.dart';
 import 'lesson_details.dart';
 
 class VideoListScreen extends StatelessWidget {
@@ -43,15 +42,16 @@ class VideoListScreen extends StatelessWidget {
                               title: model.data![index].title!,
                               subTitle: model.data![index].description!,
                               thumbnailImage: 'assets/images/Ahmed.jpg',
-                          function: (){
-                            print('Hello');
+                              function: () {
+                                print('Hello');
                                 Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => VideoPlayersScreen(videoData: model.data![index]),
-                              ),
-                            );
-                          },
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => VideoPlayersScreen(
+                                        videoData: model.data![index]),
+                                  ),
+                                );
+                              },
                             ),
                         separatorBuilder: (context, index) => const SizedBox(
                               height: 5,

@@ -1,8 +1,8 @@
-import 'package:e_learining/shared/components/custom_widgets/chat_component.dart';
 import 'package:flutter/material.dart';
-import 'package:pod_player/pod_player.dart';
+import 'package:vimeo_video_player_custom/vimeo_video_player_custom.dart';
 import '../../models/comment_model.dart';
 import '../../models/list_of_videos_model.dart';
+import '../../shared/components/custom_widgets/chat_component.dart';
 
 class VideoPlayersScreen extends StatefulWidget {
   final Data videoData;
@@ -14,25 +14,7 @@ class VideoPlayersScreen extends StatefulWidget {
 }
 
 class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
-  late final PodPlayerController controller;
 
-  @override
-  void initState() {
-    Uri uri = Uri.parse(widget.videoData.video.toString());
-    String lastSegment = uri.pathSegments.last;
-    controller = PodPlayerController(
-      playVideoFrom: PlayVideoFrom.vimeo(
-        lastSegment,
-      ),
-    )..initialise();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +26,8 @@ class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PodVideoPlayer(
-                controller: controller,
-                videoAspectRatio: 16 / 9,
+              VimeoVideoPlayer(
+                url: widget.videoData.video!,
               ),
               Padding(
                 padding:

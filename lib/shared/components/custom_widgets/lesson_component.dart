@@ -1,6 +1,7 @@
-import 'package:e_learining/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../styles/colors.dart';
 
 class VideComponent extends StatelessWidget {
   String title;

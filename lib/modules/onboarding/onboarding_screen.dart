@@ -1,9 +1,9 @@
-import 'package:e_learining/modules/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../shared/components/constants/navigation_helper.dart';
 import '../../shared/network/local/shared_preferences_helper.dart';
 import '../../shared/styles/colors.dart';
+import '../auth/login/login_screen.dart';
 
 class BoardingModel {
   final String image;
