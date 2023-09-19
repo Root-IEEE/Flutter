@@ -5,3 +5,4 @@ const kLogo = 'assets/images/cura_small_logo.png';
 const kMessagesCollections = 'messages';
 const kMessage = 'message';
 const kCreatedAt = 'createdAt';
+
