@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:e_learning/modules/auth/register/register_cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../models/register_model.dart';
 import '../../../../shared/network/end_points.dart';
@@ -39,13 +40,14 @@ class AppRegisterCubit extends Cubit<AppRegisterStates> {
     });
   }
 
-  IconData suffix = Icons.visibility_outlined;
+  Widget suffix = SvgPicture.asset('assets/icons/eye.svg');
   bool isPassword = true;
 
   void changePasswordVisibility() {
     isPassword = !isPassword;
-    suffix =
-        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    suffix = isPassword
+        ? SvgPicture.asset('assets/icons/eye.svg')
+        : SvgPicture.asset('assets/icons/eye-slash.svg');
     emit(AppRegisterChangePasswordVisibilityState());
   }
 

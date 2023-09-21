@@ -1,10 +1,11 @@
 import 'package:e_learning/modules/auth/login/login_screen.dart';
 import 'package:e_learning/modules/auth/register/register_cubit/cubit.dart';
 import 'package:e_learning/modules/auth/register/register_cubit/states.dart';
+import 'package:e_learning/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../layout/layout.dart';
 import '../../../shared/components/constants/navigation_helper.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
@@ -12,6 +13,8 @@ import '../../../shared/components/custom_widgets/main_button.dart';
 import '../../../shared/network/local/shared_preferences_helper.dart';
 
 class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -67,14 +70,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
+                                alignment: Alignment.topCenter,
+                                child: Image.asset(
+                                  'assets/images/logo.png',
+                                )),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Align(
                               alignment: Alignment.topCenter,
                               child: Text(
                                 'Welcome!',
-                                style: GoogleFonts.poppins().copyWith(
-                                  color: Colors.black,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(
+                                      color: Colors.black,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               ),
                             ),
                             const SizedBox(
@@ -84,8 +98,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               'Name',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
+                                  .labelMedium!
+                                  .copyWith(color: AppColors.purpleGrey),
                             ),
                             const SizedBox(
                               height: 5.0,
@@ -99,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 }
                               },
                               labelText: 'Enter your name',
-                              prefixIcon: Icons.person_outline,
+                              prefixIcon: const Icon(Icons.person_outline),
                             ),
                             const SizedBox(
                               height: 15.0,
@@ -108,8 +122,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               'Email',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
+                                  .labelMedium!
+                                  .copyWith(color: AppColors.purpleGrey),
                             ),
                             const SizedBox(
                               height: 5.0,
@@ -123,7 +137,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 }
                               },
                               labelText: 'Email Address',
-                              prefixIcon: Icons.email,
+                              prefixIcon:
+                                  SvgPicture.asset('assets/icons/sms.svg'),
                             ),
                             const SizedBox(
                               height: 15.0,
@@ -132,8 +147,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               'Password',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
+                                  .labelMedium!
+                                  .copyWith(color: AppColors.purpleGrey),
                             ),
                             const SizedBox(
                               height: 5.0,
@@ -153,7 +168,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 }
                               },
                               labelText: 'Password',
-                              prefixIcon: Icons.lock_outline,
+                              prefixIcon:
+                                  SvgPicture.asset('assets/icons/lock.svg'),
                             ),
                             const SizedBox(
                               height: 15.0,
@@ -162,8 +178,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               'Confirm Password',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
+                                  .labelMedium!
+                                  .copyWith(color: AppColors.purpleGrey),
                             ),
                             const SizedBox(
                               height: 5.0,
@@ -183,7 +199,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 }
                               },
                               labelText: 'Confirm Password',
-                              prefixIcon: Icons.lock_outline,
+                              prefixIcon:
+                                  SvgPicture.asset('assets/icons/lock.svg'),
                             ),
                             const SizedBox(
                               height: 15.0,
@@ -192,8 +209,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               'Gender',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
+                                  .labelMedium!
+                                  .copyWith(color: AppColors.purpleGrey),
                             ),
                             const SizedBox(
                               height: 5.0,
@@ -207,7 +224,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     cubit.selectGender(value!);
                                   },
                                 ),
-                                const Text('Male'),
+                                Text(
+                                  'Male',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(color: AppColors.purpleGrey),
+                                ),
                                 const SizedBox(
                                   width: 20,
                                 ),
@@ -218,7 +241,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     cubit.selectGender(value!);
                                   },
                                 ),
-                                const Text('Female'),
+                                Text(
+                                  'Female',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(color: AppColors.purpleGrey),
+                                ),
                               ],
                             ),
                             const SizedBox(
@@ -243,24 +272,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   );
                                 }
                               },
-                              text: 'Sign Up',
+                              text: 'Sign In',
                             ),
                             const SizedBox(height: 20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  'Already have an account?',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(fontSize: 15),
+                                Text('Already have an account?',
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall!),
+                                const SizedBox(
+                                  width: 16,
                                 ),
-                                TextButton(
-                                    onPressed: () {},
-                                    child: const Text('Sign in'))
+                                Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.1),
+                                          blurRadius: 3,
+                                          spreadRadius: 0.5,
+                                          offset: const Offset(0, 0),
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        elevation: 0,
+                                      ),
+                                      onPressed: () {
+                                        navigateTo(context, LoginScreen());
+                                      },
+                                      child: const Text(
+                                        'Sign In',
+                                        style: TextStyle(
+                                            fontSize: 12, color: Colors.black),
+                                      ),
+                                    ))
                               ],
                             ),
+                            const SizedBox(
+                              height: 50.0,
+                            )
                           ],
                         ),
                       ),
