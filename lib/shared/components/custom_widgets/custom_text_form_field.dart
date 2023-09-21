@@ -34,13 +34,15 @@ class DefaultTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      // height: 50,
       child: TextFormField(
         cursorColor: cursorColor,
         obscureText: isPassword,
         controller: controller,
         keyboardType: keyboardType,
         decoration: InputDecoration(
+          contentPadding:
+          const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,

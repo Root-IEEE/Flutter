@@ -272,7 +272,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   );
                                 }
                               },
-                              text: 'Sign In',
+                              text: 'Sign Up',
                             ),
                             const SizedBox(height: 20),
                             Row(
