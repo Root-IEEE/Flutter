@@ -189,7 +189,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Positioned(
                 left: 20.0, // Adjust the left position as needed
                 top: 60.0,
-                child: Image.asset('assets/images/logo white.png',width: 120)),
+                child: Image.asset('assets/images/logo_white.png',width: 120)),
           ]),
         ],
       );
