@@ -3,6 +3,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../shared/components/constants/navigation_helper.dart';
+import '../../../shared/components/custom_widgets/custom_appbar_icon.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
 import '../../../shared/components/custom_widgets/main_button.dart';
 import '../../../shared/styles/colors.dart';
@@ -18,6 +19,14 @@ class VerifyCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          title: CustomIconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

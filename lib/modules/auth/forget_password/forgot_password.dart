@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../shared/components/constants/navigation_helper.dart';
+import '../../../shared/components/custom_widgets/custom_appbar_icon.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
 import '../../../shared/components/custom_widgets/main_button.dart';
@@ -18,6 +19,14 @@ class ForgetPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          title: CustomIconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -28,6 +37,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SvgPicture.asset('assets/images/sms-tracking.svg',
                           height: 75, color: AppColors.mainColor),
@@ -76,7 +86,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                           }
                         },
                         labelText: 'Enter Your Email',
-                        prefixIcon: Icons.email,
+                        prefixIcon: SvgPicture.asset('assets/icons/sms.svg'),
                       ),
                       const SizedBox(
                         height: 24.0,
