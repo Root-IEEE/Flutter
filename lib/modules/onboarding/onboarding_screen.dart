@@ -14,7 +14,7 @@ class BoardingModel {
 }
 
 class OnBoardingScreen extends StatefulWidget {
-  OnBoardingScreen({Key? key}) : super(key: key);
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -78,58 +78,67 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             padding: const EdgeInsets.only(left: 20.0, bottom: 20),
             child: Text(
               'get started with UR PROF',
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyLarge!
-                  .copyWith(fontSize: 16.0, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
           ),
           Padding(
-              padding:
-                  const EdgeInsets.only(right: 20.0, left: 20.0, bottom: 20.0),
-              child: SizedBox(
-                width: double.infinity,
-                height: 50.0,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    backgroundColor: AppColors.mainColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40.0),
-                    ),
-                    shadowColor: AppColors.mainColor,
+            padding:
+                const EdgeInsets.only(right: 20.0, left: 20.0, bottom: 20.0),
+            child: SizedBox(
+              width: double.infinity,
+              height: 60.0,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  elevation: 5,
+                  backgroundColor: AppColors.mainColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40.0),
                   ),
-                  onPressed: () {
-                    if (isLast) {
-                      submit();
-                    }
-                    boardController.nextPage(
-                        duration: const Duration(milliseconds: 750),
-                        curve: Curves.fastLinearToSlowEaseIn);
-                  },
-                  child: const Row(
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            'Continue',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 8.0),
-                        child: Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
+                  shadowColor: AppColors.mainColor,
                 ),
-              )),
+                onPressed: () {
+                  if (isLast) {
+                    submit();
+                  }
+                  boardController.nextPage(
+                    duration: const Duration(milliseconds: 750),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  );
+                },
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          isLast ? 'Continue' : 'Get Started',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium!
+                              .copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 25.0),
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -157,10 +166,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               padding: const EdgeInsets.all(20.0),
               child: Text(
                 model.title,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontSize: 40.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineLarge!
+                    .copyWith(color: Colors.white, fontWeight: FontWeight.w600),
               ),
             ),
             Positioned(
@@ -172,9 +181,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   effect: const ScrollingDotsEffect(
                       dotColor: Colors.grey,
                       activeDotColor: Colors.white,
-                      dotWidth: 10,
-                      dotHeight: 10),
+                      activeDotScale: 2,
+                      activeStrokeWidth: 2,
+                      dotWidth: 5,
+                      dotHeight: 5),
                 )),
+            Positioned(
+                left: 20.0, // Adjust the left position as needed
+                top: 60.0,
+                child: Image.asset('assets/images/logo white.png',width: 120)),
           ]),
         ],
       );
