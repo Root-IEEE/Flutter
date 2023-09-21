@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../layout/layout.dart';
 import '../../../shared/components/constants/navigation_helper.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
 import '../../../shared/components/custom_widgets/main_button.dart';
-import '../../../shared/network/local/shared_preferences_helper.dart';
 import '../../layout/app_cubit/app_cubit.dart';
 import '../../layout/app_cubit/app_states.dart';
-import '../auth/login/login_cubit/cubit.dart';
-import '../auth/login/login_cubit/states.dart';
 
 class ChangeEmail extends StatelessWidget {
   ChangeEmail({super.key});
@@ -84,7 +82,7 @@ class ChangeEmail extends StatelessWidget {
                             }
                           },
                           labelText: 'Email Address',
-                          prefixIcon: Icons.email,
+                          prefixIcon: SvgPicture.asset('assets/icons/sms.svg'),
                         ),
                         const SizedBox(
                           height: 30.0,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../shared/components/constants/navigation_helper.dart';
+import '../../../shared/components/custom_widgets/custom_appbar_icon.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
 import '../../../shared/components/custom_widgets/main_button.dart';
@@ -9,7 +10,7 @@ import '../../../shared/styles/colors.dart';
 import '../login/login_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-  ChangePasswordScreen({super.key});
+  const ChangePasswordScreen({super.key});
 
   @override
   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
@@ -27,6 +28,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          title: CustomIconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -80,8 +89,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         suffixIcon: isPassword
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
+                            ? SvgPicture.asset('assets/icons/eye.svg')
+                            : SvgPicture.asset('assets/icons/eye-slash.svg'),
                         onFieldSubmitted: (value) {},
                         isPassword: isPassword ? true : isPassword,
                         suffixPressed: () {
@@ -95,7 +104,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           }
                         },
                         labelText: 'Enter your password',
-                        prefixIcon: Icons.lock_outline,
+                        prefixIcon: SvgPicture.asset('assets/icons/lock.svg'),
                       ),
                       const SizedBox(
                         height: 15.0,
@@ -117,8 +126,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         controller: newPasswordController,
                         keyboardType: TextInputType.visiblePassword,
                         suffixIcon: isPassword
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
+                            ? SvgPicture.asset('assets/icons/eye.svg')
+                            : SvgPicture.asset('assets/icons/eye-slash.svg'),
                         onFieldSubmitted: (value) {},
                         isPassword: isPassword ? true : isPassword,
                         suffixPressed: () {
@@ -132,7 +141,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           }
                         },
                         labelText: 'Confirm your password',
-                        prefixIcon: Icons.lock_outline,
+                        prefixIcon: SvgPicture.asset('assets/icons/lock.svg'),
                       ),
                       const SizedBox(height: 20.0),
                       MainButton(
