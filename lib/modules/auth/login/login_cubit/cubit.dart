@@ -1,6 +1,7 @@
 import 'package:e_learning/modules/auth/login/login_cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../models/login_model.dart';
 import '../../../../shared/network/end_points.dart';
@@ -29,18 +30,19 @@ class AppLoginCubit extends Cubit<AppLoginStates> {
       loginModel = AppLoginModel.fromJson(value.data!);
       emit(AppLoginSuccessState(loginModel!));
     }).catchError((error) {
-      print('YOUR FUCKIN STUPID ERROR : ${error.toString()}');
+      debugPrint('YOUR FUCKIN STUPID ERROR : ${error.toString()}');
       emit(AppLoginErrorState(error.toString()));
     });
   }
 
-  IconData suffix = Icons.visibility_outlined;
+  Widget suffix = SvgPicture.asset('assets/icons/eye.svg');
   bool isPassword = true;
 
   void changePasswordVisibility() {
     isPassword = !isPassword;
-    suffix =
-        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    suffix = isPassword
+        ? SvgPicture.asset('assets/icons/eye.svg',)
+        : SvgPicture.asset('assets/icons/eye-slash.svg');
     emit(AppChangePasswordVisibilityState());
   }
 }
