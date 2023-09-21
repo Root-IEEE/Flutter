@@ -1,11 +1,11 @@
 import 'package:e_learning/modules/auth/login/login_screen.dart';
 import 'package:e_learning/modules/auth/register/register_cubit/cubit.dart';
 import 'package:e_learning/modules/auth/register/register_cubit/states.dart';
+import 'package:e_learning/modules/auth/register/wait_for_acceptance.dart';
 import 'package:e_learning/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../shared/components/constants/navigation_helper.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
 import '../../../shared/components/custom_widgets/custom_toast.dart';
@@ -36,14 +36,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context, state) {
           try {
             if (state is AppRegisterSuccessState) {
-              print(state.registerModel.token);
+              debugPrint(state.registerModel.token);
               final token = state.registerModel.token;
               CacheHelper.saveData(
                 key: 'token',
                 value: token,
               ).then((value) {
-                navigateToAndKill(context, LoginScreen());
-                print(CacheHelper.getData(key: 'token'));
+                navigateToAndKill(context, const AcceptanceWaitingScreen());
+                debugPrint(CacheHelper.getData(key: 'token'));
               });
             } else if (state is AppRegisterErrorState) {
               showToast(
