@@ -18,7 +18,7 @@ class MainButton extends StatelessWidget {
     required this.onTap,
     this.enabled = true,
     this.color,
-    this.height = 50.0,
+    this.height = 48.0,
     this.width = 200.0,
     this.radius = 10.0,
     this.textColor = Colors.white,
@@ -29,8 +29,11 @@ class MainButton extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      child: ClipRRect(
+      child: Material(
+        elevation: 5,
+        shadowColor: AppColors.mainColor,
         borderRadius: BorderRadius.circular(radius),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shadowColor: AppColors.mainColor,

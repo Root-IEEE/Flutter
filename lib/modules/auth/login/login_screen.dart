@@ -1,7 +1,7 @@
+import 'package:e_learning/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../layout/layout.dart';
 import '../../../shared/components/constants/navigation_helper.dart';
 import '../../../shared/components/custom_widgets/custom_text_form_field.dart';
@@ -66,18 +66,29 @@ class LoginScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
+                                alignment: Alignment.topCenter,
+                                child: Image.asset(
+                                  'assets/images/logo.png',
+                                )),
+                            const SizedBox(
+                              height: 24,
+                            ),
+                            Align(
                               alignment: Alignment.topCenter,
                               child: Text(
                                 'Welcome Back!',
-                                style: GoogleFonts.poppins().copyWith(
-                                  color: Colors.black,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(
+                                      color: Colors.black,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               ),
                             ),
                             const SizedBox(
-                              height: 10.0,
+                              height: 8.0,
                             ),
                             Align(
                                 alignment: Alignment.topCenter,
@@ -86,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodySmall!
-                                          .copyWith(fontSize: 15),
+                                          .copyWith(fontSize: 14),
                                       children: [
                                         const TextSpan(
                                             text: 'Sign in now to join '),
@@ -102,14 +113,16 @@ class LoginScreen extends StatelessWidget {
                                       ]),
                                 )),
                             const SizedBox(
-                              height: 30.0,
+                              height: 56.0,
                             ),
                             Text(
                               'Email',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
+                                  .labelMedium!
+                                  .copyWith(
+                                    color: AppColors.purpleGrey,
+                                  ),
                             ),
                             const SizedBox(
                               height: 5.0,
@@ -122,8 +135,10 @@ class LoginScreen extends StatelessWidget {
                                   return 'Please enter your email address';
                                 }
                               },
-                              labelText: 'Email Address',
-                              prefixIcon: Icons.email,
+                              labelText: 'Enter your Email',
+                              prefixIcon: SvgPicture.asset(
+                                'assets/icons/sms.svg',
+                              ),
                             ),
                             const SizedBox(
                               height: 15.0,
@@ -132,8 +147,10 @@ class LoginScreen extends StatelessWidget {
                               'Password',
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodySmall!
-                                  .copyWith(fontSize: 15),
+                                  .labelMedium!
+                                  .copyWith(
+                                    color: AppColors.purpleGrey,
+                                  ),
                             ),
                             const SizedBox(
                               height: 5.0,
@@ -152,17 +169,21 @@ class LoginScreen extends StatelessWidget {
                                   return 'password is too short';
                                 }
                               },
-                              labelText: 'Password',
-                              prefixIcon: Icons.lock_outline,
+                              labelText: 'Enter your Password',
+                              prefixIcon:
+                                  SvgPicture.asset('assets/icons/lock.svg'),
                             ),
                             Align(
-                                alignment: Alignment.centerRight,
+                                alignment: Alignment.topRight,
                                 child: TextButton(
                                     onPressed: () {
                                       navigateTo(
                                           context, ForgetPasswordScreen());
                                     },
-                                    child: const Text('Forget password?'))),
+                                    child: const Text(
+                                      'Forget password?',
+                                      style: TextStyle(fontSize: 12),
+                                    ))),
                             MainButton(
                               width: double.infinity,
                               radius: 32.0,
@@ -185,19 +206,37 @@ class LoginScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  'Don\'t have an account?',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(fontSize: 15),
+                                Text('Don\'t have an account?',
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall!),
+                                const SizedBox(
+                                  width: 16,
                                 ),
-                                TextButton(
-                                    onPressed: () {
-                                      navigateTo(context, RegisterScreen());
-                                    },
-                                    child: const Text('Sign Up'))
-                              ],
+                                Container(
+                                  decoration: BoxDecoration(
+                                    boxShadow: <BoxShadow>[
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.1),
+                                        spreadRadius: 1,
+                                        blurRadius: 5,
+                                        offset: const Offset(0, 0),
+                                      ),
+                                    ],
+                                  ),child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    elevation: 0
+                                ),
+                                  onPressed: () {
+                                    navigateTo(context, const RegisterScreen());
+                                  },
+                                  child: const Text(
+                                    'Sign Up',
+                                    style: TextStyle(fontSize: 12, color: Colors.black),
+                                  ),
+                                )
+
+                                ) ],
                             ),
                           ],
                         ),
