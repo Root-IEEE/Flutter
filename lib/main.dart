@@ -1,4 +1,3 @@
-import 'package:e_learning/modules/home/home_screen.dart';
 import 'package:e_learning/shared/components/constants/bloc_observer.dart';
 import 'package:e_learning/shared/network/local/shared_preferences_helper.dart';
 import 'package:e_learning/shared/network/remote/dio_helper.dart';
@@ -28,7 +27,7 @@ Future<void> main() async {
       widget = LoginScreen();
     }
   } else {
-    widget = OnBoardingScreen();
+    widget = const OnBoardingScreen();
   }
 
   runApp(
@@ -42,16 +41,17 @@ class MyApp extends StatelessWidget {
   // final bool isDark;
   final Widget? startWidget;
 
-  const MyApp(
-      {Key? key,
-      // required this.isDark,
-      required this.startWidget})
+  const MyApp({Key? key,
+    // required this.isDark,
+    required this.startWidget})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => AppCubit()..getListOfAllVideos(),
+        create: (context) =>
+        AppCubit()
+          ..getListOfAllVideos(),
         child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
