@@ -1,5 +1,4 @@
 import 'package:e_learning/models/list_of_quizzes_model.dart';
-import 'package:e_learning/modules/lesson_details/list_of_lessons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/list_of_videos_model.dart';
@@ -22,6 +21,14 @@ class AppCubit extends Cubit<AppStates> {
     const QuizzesListScreen(),
     const ChatScreen(),
     const UserScreen(),
+  ];
+
+  List<String> data = [
+    'assets/icons/3dcubeIcons.svg',
+    'assets/icons/video-playIcons.svg',
+    'assets/icons/clipboard-textIcons.svg',
+    'assets/icons/messagesIcons.svg',
+    'assets/icons/setting-2Icons.svg',
   ];
 
   void changeBottom(int index) {
