@@ -3,7 +3,6 @@ import 'package:e_learning/shared/components/constants/navigation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../layout/app_cubit/app_cubit.dart';
 import '../../layout/app_cubit/app_states.dart';
 import '../../models/list_of_videos_model.dart';
@@ -24,8 +23,9 @@ class HomeScreen extends StatelessWidget {
 
           return ConditionalBuilder(
             condition: state is! ListOfAllVideosLoadingState,
-            builder: (context) => Scaffold(
-              body: SingleChildScrollView(
+            builder: (context) => SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 80.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -41,12 +41,11 @@ class HomeScreen extends StatelessWidget {
                               height: 60.0,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                  image:
-                                  AssetImage('assets/images/Ahmed.jpg'),
+                                  image: AssetImage('assets/images/Ahmed.jpg'),
                                   fit: BoxFit.cover,
                                 ),
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(100.0)),
+                                    BorderRadius.all(Radius.circular(100.0)),
                               ),
                             ),
                             const SizedBox(
@@ -66,8 +65,8 @@ class HomeScreen extends StatelessWidget {
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600),
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w600),
                                     ),
                                   ]),
                             ),
@@ -91,8 +90,7 @@ class HomeScreen extends StatelessWidget {
                                 .textTheme
                                 .bodyMedium!
                                 .copyWith(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400),
+                                    fontSize: 18, fontWeight: FontWeight.w400),
                           ),
                           const SizedBox(
                             height: 20,
@@ -120,15 +118,19 @@ class HomeScreen extends StatelessWidget {
                                     alignment: Alignment.center,
                                     children: [
                                       ClipRRect(
-                                          borderRadius:
-                                          const BorderRadius.only(
+                                          borderRadius: const BorderRadius.only(
                                             topLeft: Radius.circular(20),
                                             bottomLeft: Radius.circular(20),
                                           ),
-                                          child: Image.asset(
-                                              'assets/images/Ahmed.jpg',
-                                              height: 150,
-                                              width: 150)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 11.0),
+                                            child: Image.asset(
+                                                'assets/images/teacher_online.jpg',
+                                                height: 150,
+                                                width: 150,
+                                                fit: BoxFit.cover),
+                                          )),
                                       SvgPicture.asset(
                                           'assets/images/video_icon.svg'),
                                     ],
@@ -136,7 +138,7 @@ class HomeScreen extends StatelessWidget {
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
@@ -170,11 +172,11 @@ class HomeScreen extends StatelessWidget {
                                                   .textTheme
                                                   .bodySmall!
                                                   .copyWith(
-                                                  fontSize: 15,
-                                                  color:
-                                                  AppColors.mainColor,
-                                                  fontWeight:
-                                                  FontWeight.w600),
+                                                      fontSize: 15,
+                                                      color:
+                                                          AppColors.mainColor,
+                                                      fontWeight:
+                                                          FontWeight.w600),
                                             ),
                                             Icon(
                                               Icons.arrow_right,
@@ -207,8 +209,8 @@ class HomeScreen extends StatelessWidget {
                                     .textTheme
                                     .bodyMedium!
                                     .copyWith(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w400),
                               ),
                               const Spacer(),
                               TextButton(
@@ -219,50 +221,38 @@ class HomeScreen extends StatelessWidget {
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                        decoration:
-                                        TextDecoration.underline,
-                                        color: AppColors.mainColor,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 16),
+                                            decoration:
+                                                TextDecoration.underline,
+                                            color: AppColors.mainColor,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16),
                                   )),
                             ],
                           ),
                         ],
                       ),
                     ),
-                    ConditionalBuilder(
-                      condition: model!.data!.isNotEmpty,
-                      builder: (context) {
-                        return ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: (context, index) => VideComponent(
-                                  title: model.data![index].title!,
-                                  subTitle: model.data![index].description!,
-                                  thumbnailImage: 'assets/images/Ahmed.jpg',
-                                  function: () {
-                                    print('Hello');
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            VideoPlayersScreen(
-                                                videoData: model.data![index]),
-                                      ),
-                                    );
-                                  },
-                                ),
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                            itemCount: model.data!.length);
-                      },
-                      fallback: (context) {
-                        // Handle the case when model is null or empty
-                        return const Center(child: Text('No data available'));
-                      },
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) => VideComponent(
+                        title: model.data![index].title!,
+                        subTitle: model.data![index].description!,
+                        thumbnailImage: 'assets/images/Ahmed.jpg',
+                        function: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => VideoPlayersScreen(
+                                        videoData: model.data![index],
+                                      )));
+                        },
+                      ),
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 5,
+                      ),
+                      itemCount: model.data!.length,
                     ),
                   ],
                 ),
