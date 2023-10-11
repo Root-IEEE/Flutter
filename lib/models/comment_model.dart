@@ -19,24 +19,24 @@ List<CommentModel> dummyComments = [
     date: DateFormat('hh:mm a').format(DateTime.now().add(const Duration(hours: 1))),
     title: 'Ahmed Mahmoud',
     subTitle: 'How can I help you',
-    image: 'assets/images/Ahmed.jpg',
+    image: 'assets/images/person.png',
   ),
   CommentModel(
     date: DateFormat('hh:mm a').format(DateTime.now().add(const Duration(hours: 1))),
     title: 'Ahmed Mahmoud',
     subTitle: 'How can I help you',
-    image: 'assets/images/Ahmed.jpg',
+    image: 'assets/images/person.png',
   ),
   CommentModel(
     date: DateFormat('hh:mm a').format(DateTime.now().add(const Duration(hours: 1))),
     title: 'Ahmed Mahmoud',
     subTitle: 'How can I help you',
-    image: 'assets/images/Ahmed.jpg',
+    image: 'assets/images/person.png',
   ),
   CommentModel(
     date: DateFormat('hh:mm a').format(DateTime.now().add(const Duration(hours: 1))),
     title: 'Ahmed Mahmoud',
     subTitle: 'How can I help you',
-    image: 'assets/images/Ahmed.jpg',
+    image: 'assets/images/person.png',
   ),
 ];
