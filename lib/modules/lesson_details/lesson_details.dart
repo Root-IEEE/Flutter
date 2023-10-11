@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vimeo_video_player_custom/vimeo_video_player_custom.dart';
 import '../../models/comment_model.dart';
 import '../../models/list_of_videos_model.dart';
-import '../../shared/components/custom_widgets/chat_component.dart';
+import '../../shared/components/custom_widgets/comment_component.dart';
 
 class VideoPlayersScreen extends StatefulWidget {
   final Data videoData;
@@ -14,8 +14,6 @@ class VideoPlayersScreen extends StatefulWidget {
 }
 
 class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,10 +33,9 @@ class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
                 child: Text(
                   widget.videoData.title!,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                 ),
               ),
               Padding(
@@ -93,7 +90,6 @@ class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
                         ),
                       ),
                     ),
-
                     const Align(
                       alignment: Alignment.center,
                       child: Padding(
@@ -104,13 +100,11 @@ class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
                         ),
                       ),
                     ),
-
-                    // third tab bar view widget (Comments)
                     ListView(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         children: dummyComments
-                            .map((e) => ChatComponent(
+                            .map((e) => CommentComponent(
                                   title: e.title,
                                   subTitle: e.subTitle,
                                   image: e.image,
