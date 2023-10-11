@@ -16,6 +16,7 @@ class AppColors {
   static Color? grey = Colors.grey[120];
   static Color backgroundColor = const Color(0xffF8F8F8);
   static Color purpleGrey = const Color(0xff939196);
+  static Color blackGrey = const Color(0xffEBEBEB);
   static LinearGradient customGradient = LinearGradient(
     colors: [
       mainColor[200]!, // Start color (you can choose any color from your mainColor)

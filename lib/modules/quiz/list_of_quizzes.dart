@@ -1,4 +1,3 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:e_learning/modules/quiz/quiz_screen.dart';
 import 'package:e_learning/shared/components/constants/navigation_helper.dart';
 import 'package:flutter/material.dart';
@@ -17,41 +16,46 @@ class QuizzesListScreen extends StatelessWidget {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        late ListOfQuizzesModel model;
         return SafeArea(
           child: Scaffold(
-              body: SingleChildScrollView(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    'Quizzes',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                ListView(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: dummyQuizzes
-                      .map((e) => Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: ListOfQuizzesComponents(
-                              title: e.title,
-                              subTitle: e.description,
-                              function: () {
-                                navigateTo(context, QuizScreen());
-                              },
-                            ),
-                          ))
-                      .toList(),
-                ),
-              ]))),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 80),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          'Quizzes',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      ListView(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: dummyQuizzes
+                            .map((e) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: ListOfQuizzesComponents(
+                                    title: e.title,
+                                    subTitle: e.description,
+                                    function: () {
+                                      navigateTo(context, QuizScreen());
+                                    },
+                                  ),
+                                ))
+                            .toList(),
+                      ),
+                    ]),
+              ),
+            ),
+          ),
         );
       },
     );
