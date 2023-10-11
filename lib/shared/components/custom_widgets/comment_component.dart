@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ChatComponent extends StatelessWidget {
+class CommentComponent extends StatelessWidget {
   String title;
   String subTitle;
   String image;
   Function? function;
   String date;
 
-  ChatComponent({
+  CommentComponent({
     required this.title,
     required this.subTitle,
     required this.image,
@@ -21,7 +21,7 @@ class ChatComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding:
-          const EdgeInsets.only(left: 20, right: 20, bottom: 5.0, top: 5.0),
+      const EdgeInsets.only(left: 20, right: 20, bottom: 5.0, top: 5.0),
       child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -33,24 +33,10 @@ class ChatComponent extends StatelessWidget {
               onTap: () {
                 function;
               },
-              leading: Stack(children: [
-                CircleAvatar(
-                  radius: 25.0,
-                  backgroundImage: AssetImage(image),
-                ),
-                Positioned(
-                  right: 0,
-                  bottom: 0,
-                  child: Container(
-                    width: 10.0,
-                    height: 10.0,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.green,
-                    ),
-                  ),
-                ),
-              ]),
+              leading: CircleAvatar(
+                radius: 25.0,
+                backgroundImage: AssetImage(image),
+              ),
               title: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Text(

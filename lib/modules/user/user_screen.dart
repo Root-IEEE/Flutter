@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../shared/components/constants/navigation_helper.dart';
 import '../../shared/styles/colors.dart';
 import '../change_info/change_email.dart';
@@ -33,8 +32,9 @@ class _UserScreenState extends State<UserScreen> {
                       'Settings',
                       style: Theme.of(context)
                           .textTheme
-                          .bodyLarge!
-                          .copyWith(fontSize: 24, fontWeight: FontWeight.bold),
+                          .headlineSmall!
+                          .copyWith(
+                              color: Colors.black, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
@@ -46,34 +46,23 @@ class _UserScreenState extends State<UserScreen> {
                   height: 120.0,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/Ahmed.jpg'),
+                      image: AssetImage('assets/images/person.png'),
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(100.0)),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
                 Text(
                   'Ahmed Mahmoud',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.notoSans(
-                    textStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: Colors.black, fontWeight: FontWeight.w600),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 4),
                 Text(
-                  'Ahmedmahmoudyahia72@gmail.com',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.notoSans(
-                    textStyle: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
-                    ),
-                  ),
+                  '2y / secondary school',
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: AppColors.purpleGrey, fontWeight: FontWeight.w400),
                 ),
                 const SizedBox(
                   height: 30,
@@ -89,17 +78,16 @@ class _UserScreenState extends State<UserScreen> {
                     },
                     title: Text(
                       'Change Email',
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall!
+                          .copyWith(fontWeight: FontWeight.w400),
                     ),
                     trailing: IconButton(
                       onPressed: () {},
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.arrow_forward_ios_outlined,
-                        color: Colors.black,
+                        color: AppColors.purpleGrey,
                         size: 20,
                       ),
                     ),
@@ -119,11 +107,10 @@ class _UserScreenState extends State<UserScreen> {
                       },
                       title: Text(
                         'Notifications',
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .copyWith(fontWeight: FontWeight.w400),
                       ),
                       trailing: Switch(
                         // This bool value toggles the switch.
@@ -138,7 +125,7 @@ class _UserScreenState extends State<UserScreen> {
                       )),
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 12,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -158,12 +145,13 @@ class _UserScreenState extends State<UserScreen> {
                             width: 5,
                           ),
                           Text(
-                            'Logout',
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.w600),
-                            ),
+                            'Log Out',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),

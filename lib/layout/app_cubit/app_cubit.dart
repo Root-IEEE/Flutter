@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/list_of_videos_model.dart';
 import '../../modules/chat/online_users_screen.dart';
 import '../../modules/home/home_screen.dart';
+import '../../modules/lesson_details/list_of_lessons.dart';
 import '../../modules/quiz/list_of_quizzes.dart';
 import '../../modules/user/user_screen.dart';
 import '../../shared/network/end_points.dart';
@@ -17,7 +18,7 @@ class AppCubit extends Cubit<AppStates> {
   int currentIndex = 0;
   List<Widget> bottomScreens = [
     const HomeScreen(),
-    Container(),
+    const VideoListScreen(),
     const QuizzesListScreen(),
     const ChatScreen(),
     const UserScreen(),

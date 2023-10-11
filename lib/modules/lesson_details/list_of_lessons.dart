@@ -28,8 +28,8 @@ class VideoListScreen extends StatelessWidget {
                     'Lessons',
                     style: Theme.of(context)
                         .textTheme
-                        .bodyLarge!
-                        .copyWith(fontSize: 24, fontWeight: FontWeight.bold),
+                        .headlineSmall!
+                        .copyWith(fontWeight: FontWeight.w600),
                   ),
                 ),
                 ConditionalBuilder(
@@ -41,7 +41,7 @@ class VideoListScreen extends StatelessWidget {
                         itemBuilder: (context, index) => VideComponent(
                               title: model.data![index].title!,
                               subTitle: model.data![index].description!,
-                              thumbnailImage: 'assets/images/Ahmed.jpg',
+                              thumbnailImage: 'assets/images/teacher_online.jpg',
                               function: () {
                                 print('Hello');
                                 Navigator.push(

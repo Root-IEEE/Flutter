@@ -27,9 +27,9 @@ class ListOfQuizzesComponents extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 3,
-                blurRadius: 5,
-                offset: const Offset(0, 1), // changes position of shadow
+                spreadRadius: 0.5,
+                blurRadius: 0.5,
+                offset: const Offset(0, 1),
               ),
             ],
           ),
@@ -45,7 +45,11 @@ class ListOfQuizzesComponents extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SvgPicture.asset('assets/icons/clipboard-textIcons.svg',
-                          width: 32),
+                          colorFilter: const ColorFilter.mode(
+                              Colors.black, BlendMode.srcIn),
+                          height: 32,
+                          width: 32,
+                      ),
                       const SizedBox(
                         height: 16,
                       ),

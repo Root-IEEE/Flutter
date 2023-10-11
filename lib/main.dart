@@ -38,7 +38,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // final bool isDark;
   final Widget? startWidget;
 
   const MyApp({Key? key,
