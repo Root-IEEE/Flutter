@@ -1,9 +1,12 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:e_learning/shared/components/constants/bloc_observer.dart';
 import 'package:e_learning/shared/network/local/shared_preferences_helper.dart';
 import 'package:e_learning/shared/network/remote/dio_helper.dart';
 import 'package:e_learning/shared/styles/colors.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'layout/app_cubit/app_cubit.dart';
@@ -31,8 +34,11 @@ Future<void> main() async {
   }
 
   runApp(
-    MyApp(
-      startWidget: widget,
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(
+        startWidget: widget,
+      ),
     ),
   );
 }
@@ -40,36 +46,42 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final Widget? startWidget;
 
-  const MyApp({Key? key,
-    // required this.isDark,
-    required this.startWidget})
+  const MyApp(
+      {Key? key,
+      // required this.isDark,
+      required this.startWidget})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) =>
-        AppCubit()
-          ..getListOfAllVideos(),
+      create: (context) => AppCubit()..getListOfAllVideos(),
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
         child: GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              scaffoldBackgroundColor: Colors.grey.shade200,
-              brightness: Brightness.light,
-              primarySwatch: AppColors.mainColor,
-              textTheme: GoogleFonts.poppinsTextTheme(
-                Theme.of(context).textTheme,
-              ),
-              appBarTheme: AppBarTheme(
-                  backgroundColor: Colors.grey.shade200,
-                  iconTheme: const IconThemeData(color: Colors.black)),
-              tabBarTheme: TabBarTheme(
-                unselectedLabelStyle: const TextStyle(color: Colors.grey),
-                unselectedLabelColor: Colors.grey,
-                labelColor: AppColors.mainColor,
-                indicatorSize: TabBarIndicatorSize.label,
-              ),
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            scaffoldBackgroundColor: Colors.grey.shade200,
+            brightness: Brightness.light,
+            primarySwatch: AppColors.mainColor,
+            textTheme: GoogleFonts.poppinsTextTheme(
+              Theme.of(context).textTheme,
             ),
-            home: startWidget));
+            appBarTheme: AppBarTheme(
+                backgroundColor: Colors.grey.shade200,
+                iconTheme: const IconThemeData(color: Colors.black)),
+            tabBarTheme: TabBarTheme(
+              unselectedLabelStyle: const TextStyle(color: Colors.grey),
+              unselectedLabelColor: Colors.grey,
+              labelColor: AppColors.mainColor,
+              indicatorSize: TabBarIndicatorSize.label,
+            ),
+          ),
+          home: startWidget,
+        ),
+      ),
+    );
   }
 }
