@@ -23,6 +23,8 @@ dependencies:
   fluttertoast: ^8.2.2
   vimeo_video_player_custom: ^0.0.1
   get: ^4.6.6
+  flutter_screenutil: ^5.9.0
+  device_preview: ^1.1.0
 
 
 dev_dependencies:

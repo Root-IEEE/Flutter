@@ -15,6 +15,10 @@ class VideoPlayersScreen extends StatefulWidget {
 
 class _VideoPlayersScreenState extends State<VideoPlayersScreen> {
   @override
+  void dispose() {
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: DefaultTabController(
